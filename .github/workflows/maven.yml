@@ -36,4 +36,6 @@ jobs:
     - name: Build docker
       run: docker build -t $IMAGE_NAME .
     - name: Push Docker image
-      run: docker push $IMAGE_NAME
+      run: |
+        docker login -u ${{ vars.USERNAME }} -p ${{ secrets.GITHUB_TOKEN }}
+        docker push $IMAGE_NAME
